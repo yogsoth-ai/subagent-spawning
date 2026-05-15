@@ -1,17 +1,17 @@
 # subagent-spawning
 
-**Claude Code skill for spawning customized subagents with full MCP tool access.**
+**Claude Code skill for spawning customized subagents with full MCP tool access — replaces dare-agents MCP with pure markdown orchestration.**
 
-- Teaches CC how to create role-specific subagents from SOP definitions
-- Each subagent inherits all MCP tools (literature search, web browsing, citation tracing)
-- Replaces dare-agents MCP (34 TypeScript tools) with pure markdown orchestration
-- Zero code, zero dependencies, zero runtime processes
+- 🤖 **Role-specific subagents** — spawn specialized thinking agents from SOP definitions
+- 🔧 **Full tool inheritance** — each subagent gets all MCP tools (literature search, web browsing, citation tracing)
+- 📝 **Pure markdown** — zero code, zero dependencies, zero runtime processes
+- 🎯 **Opus-level reasoning** — subagents operate at the same quality as the main orchestrator
 
 ## What is this?
 
-A [Claude Code skill](https://docs.anthropic.com/en/docs/claude-code) that standardizes how subagents are spawned during research workflows. When an SOP declares `execution: subagent`, this skill tells main CC exactly how to create that subagent — what model to use, what tools to give it, how to pass inputs, and how to handle outputs.
+This is a [Claude Code skill](https://docs.anthropic.com/en/docs/claude-code) that standardizes how subagents are spawned during research workflows. When an SOP declares `execution: subagent`, this skill tells main CC exactly how to create that subagent — what model to use, what tools to give it, how to pass inputs, and how to handle outputs.
 
-Designed for the NOESYNTH/DARE research engine ecosystem. Works alongside [literature-engine](https://github.com/noesynth/literature-engine), [web-browsing](https://github.com/noesynth/web-browsing), and [semantic-scholar-mcp](https://github.com/noesynth/semantic-scholar-mcp).
+Designed for the NOESYNTH/DARE research engine ecosystem. Works alongside [literature-engine](https://github.com/yogsoth-ai/literature-engine), [web-browsing](https://github.com/yogsoth-ai/web-browsing), and [semantic-scholar-mcp](https://github.com/yogsoth-ai/semantic-scholar-mcp).
 
 ## How It Works
 
@@ -42,7 +42,7 @@ SOP SKILL.md declares: execution: subagent, prompt: ./prompt.md
 Clone this repository:
 
 ```bash
-git clone https://github.com/noesynth/subagent-spawning.git
+git clone https://github.com/yogsoth-ai/subagent-spawning.git
 ```
 
 ### 2. Write an SOP with Subagent
@@ -64,6 +64,28 @@ Create a `prompt.md` next to it defining the subagent's role.
 
 See `skills/spawn-agent/RULES.md` for the full authoring guide with examples.
 
+## SOP Declaration Format
+
+```yaml
+---
+name: SCAMPER Substitute
+description: Apply Substitute lens to generate idea variants
+type: sop
+layer: sop
+execution: subagent
+prompt: ./prompt.md
+input: idea (string), context (string)
+output: markdown (variants with title, description, novelty assessment)
+---
+```
+
+| Field | Purpose |
+|-------|---------|
+| `execution: subagent` | Signals spawn-agent skill activation |
+| `prompt: ./prompt.md` | Relative path to role prompt file |
+| `input` | Documents what parameters the SOP receives |
+| `output` | Documents expected output structure |
+
 ## Project Structure
 
 ```
@@ -74,10 +96,6 @@ subagent-spawning/
 │       └── RULES.md      # Authoring reference — how to write subagent SOPs
 ├── assets/
 │   └── repo-info.txt
-├── docs/
-│   └── superpowers/
-│       ├── specs/        # Design spec
-│       └── plans/        # Implementation plan
 ├── README.md
 ├── .gitignore
 └── LICENSE
@@ -96,10 +114,10 @@ subagent-spawning/
 
 ## Links
 
-- [NOESYNTH organization](https://github.com/noesynth)
-- [literature-engine](https://github.com/noesynth/literature-engine)
-- [web-browsing](https://github.com/noesynth/web-browsing)
-- [semantic-scholar-mcp](https://github.com/noesynth/semantic-scholar-mcp)
+- 🐙 [GitHub repository](https://github.com/yogsoth-ai/subagent-spawning)
+- 📚 [literature-engine](https://github.com/yogsoth-ai/literature-engine)
+- 🌐 [web-browsing](https://github.com/yogsoth-ai/web-browsing)
+- 🔬 [semantic-scholar-mcp](https://github.com/yogsoth-ai/semantic-scholar-mcp)
 
 ## Version
 
