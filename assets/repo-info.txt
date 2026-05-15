@@ -1,0 +1,3 @@
+subagent-spawning
+
+Claude Code skill for spawning customized subagents with full MCP tool access — replaces dare-agents MCP with pure markdown orchestration
