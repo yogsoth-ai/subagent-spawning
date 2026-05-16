@@ -123,6 +123,6 @@ subagent-spawning/
 
 **v0.1.0** — Initial release (spawn-agent skill + authoring rules)
 
-## License
+## 📄 License
 
 [Apache-2.0](LICENSE)
